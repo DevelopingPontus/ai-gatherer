@@ -34,7 +34,7 @@ import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestPropertySource(properties = "openai.api.key=test_key_12345")
 class AiGathererControllerTests {
-
+	
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -70,15 +70,13 @@ class AiGathererControllerTests {
 	void shouldReturnValidResponseDTO() throws Exception {
 		String query = "dockerfile";
 		ResultActions result = performPost(query);
-		System.out.println("---------------------");
-		System.out.println(getResultString(result));
-		assertTrue(getResultString(result).contains("d"));
+		assertTrue(getResultString(result).contains("dockerfile"));
 	}
 
 	private ResultActions performPost(String query) throws Exception {
 		return mockMvc.perform(post(uri)
-				.contentType(mt)
-				.content(query));
+		.param("prompt", query)
+				.contentType(mt));
 	}
 
 	private String getResultString(ResultActions resultActions) throws Exception {
