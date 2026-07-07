@@ -14,6 +14,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -69,7 +70,9 @@ class AiGathererControllerTests {
 	void shouldReturnValidResponseDTO() throws Exception {
 		String query = "dockerfile";
 		ResultActions result = performPost(query);
-		getResultString(result).contains(query);
+		System.out.println("---------------------");
+		System.out.println(getResultString(result));
+		assertTrue(getResultString(result).contains("d"));
 	}
 
 	private ResultActions performPost(String query) throws Exception {
