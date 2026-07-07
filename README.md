@@ -18,22 +18,21 @@
 ## Setup
 
 1. Clone the repository.
-1. Set the OpenAI API key in your shell:
+2. Create a .env file with content: export OPENAI_API_KEY=your-openai-api-key
+3. Add the .env file to the .gitignore file.
+
+## Build and run
+
+1. Build the application:
 
 ```bash
-export OPENAI_API_KEY="your-openai-api-key"
+docker build -t ai-gatherer .
 ```
 
-1. Run the application:
+2. Run the application:
 
 ```bash
-./mvnw spring-boot:run
-```
-
-or with Maven if installed:
-
-```bash
-mvn spring-boot:run
+docker run -v $(pwd)/.env:/app/.env -p 8080:8080 ai-gatherer
 ```
 
 ## API

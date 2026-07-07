@@ -10,6 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.stereotype.Component;
 
 import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import jakarta.annotation.PostConstruct;
 
 @Component
 public class AisClient {
@@ -20,6 +21,15 @@ public class AisClient {
 
     public AisClient(AiConfig aiConfig) {
         this.aiConfig = aiConfig;
+    }
+
+    @PostConstruct
+    private void checkKey() {
+        if (System.getenv("OPENAI_API_KEY") == null || System.getenv("OPENAI_API_KEY") == "") {
+            throw new IllegalStateException("API key was not loaded before construction");
+        }
+
+        System.out.println("API Key loaded successfully (first 5 chars: " + System.getenv("OPENAI_API_KEY").substring(0, 5) + "...)");
     }
 
     /**

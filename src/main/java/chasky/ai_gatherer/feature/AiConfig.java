@@ -11,13 +11,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
-import jakarta.annotation.PostConstruct;
 
 @Configuration
 public class AiConfig {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final String API_KEY = System.getenv("OPENAI_API_KEY");
+    private final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
     private final String API_URL = "https://api.openai.com/v1/responses";
     private final String system = "You are a university teacher who scientificly explains concepts and how they depend on adjacent concepts.";
     private final String model = "gpt-4o";
@@ -48,15 +47,6 @@ public class AiConfig {
                               }
                     """;
 
-    @PostConstruct
-    private void checkKey() {
-        if (API_KEY == null || API_KEY == "") {
-            throw new IllegalStateException("API key was not loaded before construction");
-        }
-
-        System.out.println("API Key loaded successfully (first 5 chars: " + API_KEY.substring(0, 5) + "...)");
-    }
-
     public String contructRequestBody(String prompt) {
         return String.format(
                 """
@@ -86,7 +76,7 @@ public class AiConfig {
         return HttpRequest.newBuilder()
                 .uri(URI.create(API_URL))
                 .header("Content-Type", "application/json")
-                .header("Authorization", "Bearer " + API_KEY)
+                .header("Authorization", "Bearer " + OPENAI_API_KEY)
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .timeout(java.time.Duration.ofSeconds(30))
                 .build();
