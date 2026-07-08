@@ -19,7 +19,6 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
 @RestControllerAdvice
-@Slf4j
 public class GlobalExceptionHandler {
 
     // ===== VALIDATION ERRORS =====
@@ -27,7 +26,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleValidationException(
             MethodArgumentNotValidException ex, HttpServletRequest request) {
-        log.warn("Validation error on request: {}", request.getRequestURI());
 
         return ResponseEntity.badRequest()
                 .body(ErrorResponse.of(400, "VALIDATION_ERROR", "Invalid input data provided",
@@ -38,7 +36,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleConstraintViolation(
             ConstraintViolationException ex, HttpServletRequest request) {
-        log.warn("Constraint violation on request: {}", request.getRequestURI());
 
         return ResponseEntity.badRequest()
                 .body(ErrorResponse.of(400, "CONSTRAINT_VIOLATION", "Invalid input data provided",
@@ -69,7 +66,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleEntityNotFound(
             EntityNotFoundException ex, HttpServletRequest request) {
-        log.warn("Entity not found on request: {}", request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ErrorResponse.of(404, "NOT_FOUND", "Resource not found",
@@ -80,7 +76,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolation(
             DataIntegrityViolationException ex, HttpServletRequest request) {
-        log.error("Data integrity violation on request: {}", request.getRequestURI(), ex);
 
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(ErrorResponse.of(409, "DATA_CONFLICT",
@@ -92,7 +87,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorResponse> handleEmptyResult(
             EmptyResultDataAccessException ex, HttpServletRequest request) {
-        log.warn("Empty result on request: {}", request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ErrorResponse.of(404, "NOT_FOUND", "Resource not found",
@@ -104,7 +98,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadable(
             HttpMessageNotReadableException ex, HttpServletRequest request) {
-        log.warn("Invalid request body format on request: {}", request.getRequestURI());
 
         return ResponseEntity.badRequest()
                 .body(ErrorResponse.of(400, "BAD_REQUEST", "Invalid request body format",
@@ -125,7 +118,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ErrorResponse> handleGenericException(
             Exception ex, HttpServletRequest request) {
-        log.error("Unhandled exception occurred on request: {}", request.getRequestURI(), ex);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ErrorResponse.of(500, "INTERNAL_SERVER_ERROR", "An unexpected error occurred",
