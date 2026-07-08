@@ -1,9 +1,9 @@
-package chasky.ai_gatherer.feature;
+package chasky.ai_gatherer.feature.concept;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
 import jakarta.validation.constraints.Size;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package chasky.ai_gatherer.feature;
+package chasky.ai_gatherer.feature.concept;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.stereotype.Component;
 
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
 import jakarta.annotation.PostConstruct;
 
 @Component
@@ -17,7 +17,7 @@ public class AisClient {
 
     private final AiConfig aiConfig;
 
-    private static final Set<Integer> RETRYABLE_STATUS = Set.of(429, 500, 502, 503, 504);
+    private final Set<Integer> RETRYABLE_STATUS = Set.of(429, 500, 502, 503, 504);
 
     public AisClient(AiConfig aiConfig) {
         this.aiConfig = aiConfig;

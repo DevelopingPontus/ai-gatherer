@@ -1,10 +1,10 @@
-package chasky.ai_gatherer.feature;
+package chasky.ai_gatherer.feature.concept;
 
 import java.io.IOException;
 
 import org.springframework.stereotype.Service;
 
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
 
 @Service
 public class AiService {

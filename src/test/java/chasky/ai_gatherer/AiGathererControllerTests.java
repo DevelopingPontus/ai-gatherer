@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
@@ -23,10 +24,10 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-import chasky.ai_gatherer.feature.AiConfig;
-import chasky.ai_gatherer.feature.AisClient;
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptDTO;
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.AiConfig;
+import chasky.ai_gatherer.feature.concept.AisClient;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -61,12 +62,14 @@ class AiGathererControllerTests {
 	}
 
 	@Test
+	@WithMockUser(roles = "USER")
 	void shouldReturnOkStatus() throws Exception {
 		String query = "dockerfile";
 		performPost(query).andExpect(status().isOk());
 	}
 
 	@Test
+	@WithMockUser(roles = "USER")
 	void shouldReturnValidResponseDTO() throws Exception {
 		String query = "dockerfile";
 		ResultActions result = performPost(query);

@@ -1,4 +1,4 @@
-package chasky.ai_gatherer.feature;
+package chasky.ai_gatherer.feature.concept;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import chasky.ai_gatherer.feature.ResposeDTO.ConceptResponseDTO;
+import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
 
 @Configuration
 public class AiConfig {

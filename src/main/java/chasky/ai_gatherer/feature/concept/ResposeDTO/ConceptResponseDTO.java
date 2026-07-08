@@ -1,4 +1,4 @@
-package chasky.ai_gatherer.feature.ResposeDTO;
+package chasky.ai_gatherer.feature.concept.ResposeDTO;
 
 import java.util.List;
 
