@@ -12,7 +12,9 @@ There is no ControllerAdvice implemented to handle exceptions as of now.
 
 # Resolving
 
-## According to spring security, the adding of security with configured UserDetailService covers the following.
+## A01 & A02
+
+### According to spring security, the adding of security with configured UserDetailService covers the following.
 
 Require authentication to every URL in your application
 
@@ -22,7 +24,7 @@ Let the user with a Username of user and a Password of password authenticate wit
 
 Let the user logout
 
-CSRF attack prevention (Disabled right now for testing. Can be dissabled if switching to JWT)
+CSRF attack prevention (Disabled right now for testing. Can be dissabled in production if swapped for JWT)
 
 Session Fixation protection
 
@@ -49,3 +51,7 @@ Integration with the following Servlet API methods:
     HttpServletRequest#login(java.lang.String, java.lang.String)
 
     HttpServletRequest#logout()
+
+## A10
+
+The added GlobalExceptionHandler handels thrown exceptions without leaking sensitive data and gives information of what has gone wrong.

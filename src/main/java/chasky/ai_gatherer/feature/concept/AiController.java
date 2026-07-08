@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import chasky.ai_gatherer.feature.concept.ResposeDTO.ConceptResponseDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 
 import java.io.IOException;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
@@ -20,7 +22,7 @@ public class AiController {
     }
 
     @PostMapping
-    public ConceptResponseDTO postMethodName(@Size(min = 1, max = 500) String prompt) throws IOException, InterruptedException {
+    public ConceptResponseDTO postMethodName(@Size(min = 1, max = 100) @Validated String prompt) throws IOException, InterruptedException {
         return aiService.promptAi(prompt);
     }
 
