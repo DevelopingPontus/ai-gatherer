@@ -35,6 +35,11 @@ docker build -t ai-gatherer .
 docker run -v $(pwd)/.env:/app/.env -p 8080:8080 ai-gatherer
 ```
 
+3. Login to try
+
+username: user
+password: password
+
 ## API
 
 - Endpoint: `POST /api/v1/ai`
